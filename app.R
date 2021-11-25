@@ -7,9 +7,9 @@ library(htmltools)
 library(htmlwidgets)
 
 
-sites <- fromJSON("http://esoil.io/TERNLandscapes/SoilDataFederatoR/SoilDataAPI/Site_Locations?propertytype=LaboratoryMeasurement&usr=TrustedDemo&key=jvdn64df")
-#write.csv(sites , 'c:/temp/sites.csv', row.names=F)
-#sites <- read.csv('c:/temp/sites.csv', stringsAsFactors = F)
+#sites <- fromJSON("http://esoil.io/TERNLandscapes/SoilDataFederatoR/SoilDataAPI/Site_Locations?propertytype=LaboratoryMeasurement&usr=TrustedDemo&key=jvdn64df")
+#write.csv(sites , '/srv/shiny-server/SoilSitesApp/sites.csv', row.names=F)
+sites <- read.csv('/srv/shiny-server/SoilSitesApp/sites.csv', stringsAsFactors = F)
 
 
 ui <- fluidPage(
@@ -52,7 +52,7 @@ server <- function(input, output) {
   
     bits <- str_split(sid, '[$]')
     print(bits)
-    url <- paste0("https://esoil.io/TERNLandscapes/SoilDataFederatoR/SoilDataAPI/Site_Data?DataSet=", bits[[1]][1], '&siteid=',bits[[1]][2] ,"&propertytype=LaboratoryMeasurement&tabletype=wide&usr=ross.searle@csiro.au&key=a")
+    url <- paste0("http://esoil.io/TERNLandscapes/SoilDataFederatoR/SoilDataAPI/Site_Data?DataSet=", bits[[1]][1], '&siteid=',bits[[1]][2] ,"&propertytype=LaboratoryMeasurement&tabletype=wide&usr=ross.searle@csiro.au&key=a")
     print(url)
     sdf <- fromJSON(url)
     print(sdf)
